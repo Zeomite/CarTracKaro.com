@@ -1,15 +1,16 @@
 from flask import Flask, render_template,request,redirect,url_for
+from collections.abc import MutableMapping
 import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
+from firebase_admin import credentials,db
 from config import config
-import pyrebase
+
 
 
 app = Flask(__name__)
 cred = credentials.Certificate("static/js/app.json")
-firebase=pyrebase.initialize_app(config)
-database=firebase.database()
+firebase=firebase_admin.initialize_app(cred)
+database=db.reference('/',url='https://car-track-app-a01ae-default-rtdb.firebaseio.com/')
+
 @app.route("/")
 def hello_world():
     return render_template("index.html")
@@ -20,19 +21,16 @@ def gfg():
     global username
     username = request.form.get('username', default_value)
     password= request.form.get('password', default_value)
-    print(list(database.child("users").get().val()))
-    print(dict(database.child("users").child(username).get().val())['Password'])
-    if username in list(database.child("users").get().val()) and password==dict(database.child("users").child(username).get().val())['Password']:
+    if username in list(database.child("users").get()) and password==dict(database.child("users").child(username).get())['Password']:
         return redirect(url_for('dashboard'))
     else:
         return render_template('index.html',error="user not found")
         
 @app.route("/fetch_data")
 def fetch_data():
-    user_data=dict(database.child("users").child(username).get().val())
+    user_data=dict(database.child("users").child(username).get())
     user_data['username']=username
-    print(user_data)
-    sensor_data=dict(database.child("Boards").child(int(user_data['Board id'])).get().val())
+    sensor_data = dict(database.child("Boards").child(str(user_data['Board id'])).get())
     data= [user_data,sensor_data]
     return data
 
