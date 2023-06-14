@@ -8,7 +8,7 @@ CarTracKaro.com is a Python project that utilizes the `firebase_admin` and `flas
 
 Before running the CarTracKaro.com project, make sure you have the following prerequisites installed:
 
-- Python 3.x: [Download Python](https://www.python.org/downloads/)
+- Python 3.9: [Download Python](https://www.python.org/downloads/)
 - `firebase_admin` library: Install using `pip install firebase_admin`
 - `flask` library: Install using `pip install flask`
 
@@ -17,7 +17,7 @@ Before running the CarTracKaro.com project, make sure you have the following pre
 1. Clone the repository using the following command:
 
    ```bash
-   git clone https://github.com/your-username/CarTracKaro.com.git
+   git clone https://github.com/Zeomite/CarTracKaro.com.git
    ```
 
 2. Navigate to the project directory:
@@ -71,19 +71,11 @@ config = {
 
 Make sure to replace the placeholder values with your actual Firebase project credentials.
 
-## Contributing
 
-Contributions are welcome! If you have any improvements or new features to add, feel free to submit a pull request.
-
-Please make sure to follow the [code of conduct](CODE_OF_CONDUCT.md) when contributing to this project.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-If you have any questions or suggestions, please feel free to contact the project maintainer at your-email@example.com.
+If you have any questions or suggestions, please feel free to contact the project maintainer at varunusar@gmail.com.
 
 ---
 
