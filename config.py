@@ -1,1 +1,11 @@
-"This file has been encrypted for security reasons"
+import os 
+config = {
+    'apiKey': os.environ.get('API_KEY'),
+    'authDomain': os.environ.get('YOUR_PROJECT_ID.firebaseapp.com'),
+    'databaseURL': os.environ.get('https://YOUR_PROJECT_ID.firebaseio.com'),
+    'projectId': os.environ.get('YOUR_PROJECT_ID'),
+    'storageBucket': os.environ.get('YOUR_PROJECT_ID.appspot.com'),
+    'messagingSenderId': os.environ.get('YOUR_MESSAGING_SENDER_ID'),
+    'appId': os.environ.get('YOUR_APP_ID'),
+    'measurementId': os.environ.get('YOUR_MEASUREMENT_ID)'
+}
