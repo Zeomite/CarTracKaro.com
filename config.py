@@ -7,5 +7,5 @@ config = {
     'storageBucket': os.environ.get('YOUR_PROJECT_ID_appspot_com'),
     'messagingSenderId': os.environ.get('YOUR_MESSAGING_SENDER_ID'),
     'appId': os.environ.get('YOUR_APP_ID'),
-    'measurementId': os.environ.get('YOUR_MEASUREMENT_ID)'
+    'measurementId': os.environ.get('YOUR_MEASUREMENT_ID')
 }
