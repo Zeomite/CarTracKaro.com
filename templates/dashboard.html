@@ -4,277 +4,253 @@
 <head>
   <meta charset="utf-8">
   <title>CarMonitorkaro</title>
-<!-- Favicon icon -->
-<link rel="icon" href="static\images\favicon.ico">
+  <!-- Favicon icon -->
+  <link rel="icon" href="static/images/favicon.ico">
 
-<!-- Import the Firebase JavaScript SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- Import the Firebase Realtime Database module -->
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+  <!-- Import the Firebase JavaScript SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Import the Firebase Realtime Database module -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
 
   <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="static/dashboard.css">
 
   <!-- Font Awesome -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
   <!-- Bootstrap Scripts -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
   <!-- Animation Scripts -->
-  <script src="{{ url_for('static', filename='script.js')}}" ></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>  
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 
-
 <body>
-
   <section class="colored-section" id="title">
+    <!-- Nav Bar -->
+    <div class="vertical-nav" id="sidebar">
+      <div class="py-4 px-3 mb-4 idbox">
+        <div class="media d-flex align-items-center"><img
+            src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65"
+            class="mr-3 rounded-circle img-thumbnail shadow-sm">
+          <div class="media-body">
+            <h4 class="m-0">{{data[0]['username']}}</h4>
+            <p class="font-weight-light text-muted mb-0">id:{{data[0]['Board id']}}</p>
+          </div>
+        </div>
+      </div>
 
-    
+      <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
 
-      <!-- Nav Bar -->
+      <ul class="nav flex-column mb-0">
+        <li class="nav-item">
+          <a href="#" class="nav-link text-light font-italic">
+            <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-light font-italic">
+            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+            Car Diagnostics
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-light font-italic">
+            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+            Location History
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-light font-italic">
+            <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+            Anti-Theft
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-light font-italic">
+            <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+            Sign out
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-      <<div class="vertical-nav" id="sidebar">
-        <div class="py-4 px-3 mb-4 idbox">
-          <div class="media d-flex align-items-center"><img src="https://bootstrapious.com/i/snippets/sn-v-nav/avatar.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
-            <div class="media-body">
-              <h4 class="m-0">{{data[0]['username']}}</h4>
-              <p class="font-weight-light text-muted mb-0">id:{{data[0]['Board id']}}</p>
+  <!-- Title -->
+  <div class="page-content row p-5" id="content">
+    <!-- Toggle button -->
+    <button id="sidebarCollapse" type="button"
+      class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small
+        class="text-uppercase font-weight-bold">Toggle</small></button>
+    <br>
+    <!-- Demo content -->
+    <h2 class="display-4 text-white" id="title">Hi Varun!</h2>
+    <div class="separator"></div>
+    <div class="row text-dark">
+      <div class="col-lg-4 col-md-6">
+        <div class="card text-white bg-dark mb-3 d-flex flex-column">
+          <div class="card-header">
+            <h3>Speed</h3>
+          </div>
+          <script>
+            // Make an AJAX request to the Flask backend on a regular interval
+            setInterval(() => {
+              fetch('/fetch_data')
+                .then(response => response.json())
+                .then(data => {
+                  // Update the HTML element with the result from the Flask backend
+                  var value1 = data[1]['Speed'];
+                  var value2 = data[1]['Fuel levels'];
+                  var value3 = data[0]['Vehicle'];
+                  var value4 = data[1]['latitude'];
+                  var value5 = data[1]['longitude'];
+                  var value6 = data[1]["pollution level"];
+                  var value7 = data[1]["Exhaust"];
+                  var value8 = data[1]["Engine Temp"];
+                  var value9 = data[1]["Battery Voltage"];
+                  document.getElementById('speed_data').innerHTML = value1;
+                  document.getElementById('fuel_data').innerHTML = value2;
+                  document.getElementById('vehicle_data').innerHTML = value3;
+                  document.getElementById('pollu_data').innerHTML = value6;
+                  document.getElementById('egs_data').innerHTML = value7;
+                  document.getElementById('temp_data').innerHTML = value8;
+                  document.getElementById('battery_data').innerHTML = value9;
+                  var map = L.map('map').setView([value4, value5], 13); // Set the initial center coordinates and zoom level
+
+                  // Add the OpenStreetMap tile layer to the map
+                  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+                    maxZoom: 18
+                  }).addTo(map);
+                  L.marker([value4, value5]).addTo(map)
+                  marker.setLatLng([value4, value5]);
+
+                  // Center the map on the new marker position
+                  map.setView([value4, value5]);
+                });
+            }, 1000);
+          </script>
+          <div class="card-body">
+            <p class="text-black" id="speed_data">{{data[1]["Speed"]}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 ">
+        <div class="card-container d-flex flex-column">
+          <div class="card text-white bg-dark mb-3 ">
+            <div class="card-header">
+              <h3>Fuel Level(in %)</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-black" id="fuel_data">{{data[1]["Fuel levels"]}}</p>
             </div>
           </div>
         </div>
-      
-        <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
-      
-        <ul class="nav flex-column mb-0">
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light font-italic ">
-                      <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                      Dashboard
-                  </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light font-italic">
-                      <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                      Car Diagnostics
-                  </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light font-italic">
-                      <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                      Location History
-                  </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light font-italic">
-                      <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                      Anti-Theft
-                  </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light font-italic">
-                      <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                      Sign out
-                  </a>
-          </li>
-        </ul>
-      
-     
-
-  </section>
-      <!-- Title -->
-      <div class="page-content row p-5" id="content">
-        <!-- Toggle button -->
-        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
-      <br>
-        <!-- Demo content -->
-        <h2 class="display-4 text-white" id="title">Hi Varun!</h2>
-        <div class="separator"></div>
-        <div class="row text-dark">
-          <div class="col-lg-4 col-md-6">
-            <div class="card text-white bg-dark mb-3 d-flex flex-column">
-                <div class="card-header">
-                  <h3>Speed</h3>
-                </div>
-                <script>
-                    // Make an AJAX request to the Flask backend on a regular interval
-                    setInterval(() => {
-                        fetch('/fetch_data')
-                            .then(response => response.json())
-                            .then(data => {
-                                // Update the HTML element with the result from the Flask backend
-                                var value1 = data[1]['Speed'];
-                                var value2 = data[1]['Fuel levels'];
-                                var value3 = data[0]['Vehicle'];
-                                var value4 = data[1]['latitude'];
-                                var value5 = data[1]['longitude'];
-                                var value6 = data[1]["pollution level"];
-                                var value7 = data[1]["Exhaust"];
-                                var value8 = data[1]["Engine Temp"];
-                                var value9 = data[1]["Battery Voltage"];
-                                document.getElementById('speed_data').innerHTML = value1;
-                                document.getElementById('fuel_data').innerHTML = value2;
-                                document.getElementById('vehicle_data').innerHTML = value3;
-                                document.getElementById('pollu_data').innerHTML = value6;
-                                document.getElementById('egs_data').innerHTML = value7;
-                                document.getElementById('temp_data').innerHTML = value8;
-                                document.getElementById('battery_data').innerHTML = value9;
-                                var map = L.map('map').setView([value4, value5], 13); // Set the initial center coordinates and zoom level
-                      
-                            // Add the OpenStreetMap tile layer to the map
-                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                  attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-                                  maxZoom: 18
-                                }).addTo(map);
-                                L.marker([value4, value5]).addTo(map)
-                                marker.setLatLng([value4, value5]);
-
-        // Center the map on the new marker position
-                                map.setView([value4, value5]);
-                            });
-                    }, 1000); 
-                </script>
-            <div class="card-body">
-            <p class="text-black" id="speed_data">{{data[1]["Speed"]}}</p>
-          </div>
-          </div>
-          </div>
-        
-
-            <div class="col-lg-4 col-md-6 ">
-              <div class="card-container d-flex flex-column">
-            <div class="card text-white bg-dark mb-3 ">
-                <div class="card-header">
-                      <h3>Fuel Level(in %)</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-black" id="fuel_data">{{data[1]["Fuel levels"]}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          
-                <div class="col-lg-4 col-md-6">
-                  <div class="card-container d-flex flex-column">
-                  <div class="card text-white bg-dark mb-3">
-                    <div class="card-header">
-                      <h3>Pollution level(in %)</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-black" id="pollu_data">{{data[1]["pollution level"]}}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                  <div class="card-container d-flex flex-column">
-                  <div class="card text-white bg-dark mb-3 ">
-                    <div class="card-header">
-                      <h3>Exhaust Gas Recirculation(in %)</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-black" id="egs_data">{{data[1]["Exhaust"]}}</p>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                  <div class="card-container d-flex flex-column">
-                  <div class="card text-white bg-dark mb-3">
-                    <div class="card-header">
-                      <h3>Vehicle</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-black" id="vehicle_data">{{data[0]["Vehicle"]}}</p>
-                        
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                  <div class="card-container d-flex flex-column">
-                  <div class="card text-white bg-dark mb-3 ">
-                    <div class="card-header">
-                      <h3>Engine Temp(°C)</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-black" id="temp_data">{{data[1]["Engine Temp"]}}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                  <div class="card-container d-flex flex-column">
-                  <div class="card text-white bg-dark mb-3 ">
-                    <div class="card-header">
-                      <h3>Battery Voltage(in V)</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-black" id="battery_data">{{data[1]["Battery Voltage"]}}</p>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-          
-                <div class="col-12">
-                  <div class="card-container d-flex flex-column">
-                  <div class="card text-white bg-dark mb-3 ">
-                    <div class="card-header">
-                      <h3>Current Location</h3>
-                    </div>
-                    <div class="card-body" id="map" style="height: 400px;">
-                      
-                      </div> 
-                    </div>
-                  </div> 
-                </div>
-          
-          
-          
-              </div>
-           
-  <footer class="colored-section" id="footer">
-    <div class="container-fluid">
-      <i class="social-icon fab fa-facebook-f"></i>
-      <i class="social-icon fab fa-twitter"></i>
-      <i class="social-icon fab fa-instagram"></i>
-      <i class="social-icon fas fa-envelope"></i>
-      <p>© Copyright 2023 CarMonitorKaro</p>
-    </div>
-  </footer>
-        </div>
-      
       </div>
-     
 
+      <div class="col-lg-4 col-md-6">
+        <div class="card-container d-flex flex-column">
+          <div class="card text-white bg-dark mb-3">
+            <div class="card-header">
+              <h3>Pollution level(in %)</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-black" id="pollu_data">{{data[1]["pollution level"]}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Features -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card-container d-flex flex-column">
+          <div class="card text-white bg-dark mb-3 ">
+            <div class="card-header">
+              <h3>Exhaust Gas Recirculation(in %)</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-black" id="egs_data">{{data[1]["Exhaust"]}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card-container d-flex flex-column">
+          <div class="card text-white bg-dark mb-3">
+            <div class="card-header">
+              <h3>Vehicle</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-black" id="vehicle_data">{{data[0]["Vehicle"]}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card-container d-flex flex-column">
+          <div class="card text-white bg-dark mb-3 ">
+            <div class="card-header">
+              <h3>Engine Temp(°C)</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-black" id="temp_data">{{data[1]["Engine Temp"]}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card-container d-flex flex-column">
+          <div class="card text-white bg-dark mb-3 ">
+            <div class="card-header">
+              <h3>Battery Voltage(in V)</h3>
+            </div>
+            <div class="card-body">
+              <p class="text-black" id="battery_data">{{data[1]["Battery Voltage"]}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  
-  
+      <div class="col-12">
+        <div class="card-container d-flex flex-column">
+          <div class="card text-white bg-dark mb-3 ">
+            <div class="card-header">
+              <h3>Current Location</h3>
+            </div>
+            <div class="card-body" id="map" style="height: 400px;">
 
-  <!-- Pricing -->
-
-
-
-  <!-- Call to Action -->
-
-
-  <!-- Footer -->
-
- 
-
-
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="colored-section" id="footer">
+      <div class="container-fluid">
+        <i class="social-icon fab fa-facebook-f"></i>
+        <i class="social-icon fab fa-twitter"></i>
+        <i class="social-icon fab fa-instagram"></i>
+        <i class="social-icon fas fa-envelope"></i>
+        <p>© Copyright 2023 CarMonitorKaro</p>
+      </div>
+    </footer>
+  </div>
 </body>
 
 </html>
