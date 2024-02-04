@@ -3,11 +3,12 @@ from collections.abc import MutableMapping
 import firebase_admin
 from firebase_admin import credentials, db
 from config import config
+import os 
 
 app = Flask(__name__)
 cred = credentials.Certificate("static/js/app.json")
 firebase = firebase_admin.initialize_app(cred)
-database = db.reference('/', url='https://car-track-app-a01ae-default-rtdb.firebaseio.com/')
+database = db.reference('/', url= os.environ.get('DB_URL'))
 
 @app.route("/")
 def hello_world():
