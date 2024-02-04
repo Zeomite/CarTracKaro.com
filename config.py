@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 config={
     "type": os.environ.get('TYPE'),
     "project_id": os.environ.get('PROJECT_ID'),
