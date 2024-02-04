@@ -6,7 +6,7 @@ from config import config
 import os 
 
 app = Flask(__name__)
-cred = credentials.Certificate("static/js/app.json")
+cred = credentials.Certificate(config)
 firebase = firebase_admin.initialize_app(cred)
 database = db.reference('/', url= os.environ.get('DB_URL'))
 
